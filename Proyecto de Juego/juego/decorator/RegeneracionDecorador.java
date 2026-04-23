@@ -19,7 +19,7 @@ public class RegeneracionDecorador extends PersonajeDecorador {
         // Solo regenera si sigue vivo
         if (personajeDecorado.estaVivo()) {
           
-            System.out.println("  💚 [Regeneración] " + getNombre()
+            System.out.println("   [Regeneración] " + getNombre()
                     + " se regenera " + REGENERACION + " HP.");
             
         }
