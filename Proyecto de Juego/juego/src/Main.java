@@ -6,26 +6,6 @@ import juego.personaje.*;
 
 import java.util.Scanner;
 
-/**
- * Clase principal del Juego de Lucha.
- *
- * Demostración de los 3 patrones estructurales aplicados:
- *
- * 1. DECORATOR: Se añaden habilidades a los personajes dinámicamente
- * (EscudoMagicoDecorador, VenenoDecorador, RegeneracionDecorador).
- *
- * 2. PROXY: PersonajeProxy envuelve a cada personaje para control de acceso
- * y recolección de estadísticas (aplicado automáticamente dentro de Facade).
- *
- * 3. FACADE: JuegoLuchaFacade es la única clase con la que interactúa Main.
- * Oculta toda la complejidad del sistema de combate.
- *
- * Flujo de construcción de un personaje:
- * Personaje concreto (Guerrero/Mago/Arquero)
- * → Decoradores apilados (Escudo, Veneno, etc.)
- * → PersonajeProxy (control + logging)
- * → JuegoLuchaFacade (orquesta la pelea)
- */
 public class Main {
 
     public static void main(String[] args) {
@@ -37,7 +17,7 @@ public class Main {
         System.out.println("╚══════════════════════════════════════════════════╝");
         System.out.println();
 
-        // ─── Configuración del Jugador 1 ────────────────────────────────────
+        
         System.out.print("Introduce el nombre del Jugador 1: ");
         String nombre1 = scanner.nextLine();
         System.out.println("Elige clase para " + nombre1 + ": [1] Guerrero  [2] Mago  [3] Arquero");
@@ -49,8 +29,6 @@ public class Main {
         personaje1 = aplicarDecoradores(personaje1, scanner);
 
         System.out.println();
-
-        // ─── Configuración del Jugador 2 ────────────────────────────────────
         System.out.print("Introduce el nombre del Jugador 2: ");
         String nombre2 = scanner.nextLine();
         System.out.println("Elige clase para " + nombre2 + ": [1] Guerrero  [2] Mago  [3] Arquero");
@@ -63,14 +41,12 @@ public class Main {
 
         System.out.println();
 
-        // ─── FACADE: una sola línea para iniciar toda la pelea ──────────────
         JuegoLuchaFacade juego = new JuegoLuchaFacade(personaje1, personaje2);
         juego.iniciarPelea();
 
         scanner.close();
     }
 
-    // ─── Métodos auxiliares ──────────────────────────────────────────────────
 
     private static IPersonaje crearPersonaje(String nombre, int clase, Scanner scanner) {
         switch (clase) {
@@ -88,10 +64,7 @@ public class Main {
         }
     }
 
-    /**
-     * Permite apilar decoradores sobre un personaje (patrón Decorator en acción).
-     * Los decoradores se pueden combinar en cualquier orden y cantidad.
-     */
+  
     private static IPersonaje aplicarDecoradores(IPersonaje personaje, Scanner scanner) {
         System.out.println("  [1] Escudo Mágico (reduce daño 40%, 3 cargas)");
         System.out.println("  [2] Veneno (daño +5 al atacar)");
@@ -106,15 +79,15 @@ public class Main {
             switch (op) {
                 case 1:
                     personaje = new EscudoMagicoDecorador(personaje, 3);
-                    System.out.println("  ✅ Escudo Mágico añadido.");
+                    System.out.println("  Escudo Mágico añadido.");
                     break;
                 case 2:
                     personaje = new VenenoDecorador(personaje);
-                    System.out.println("  ✅ Veneno añadido.");
+                    System.out.println("  Veneno añadido.");
                     break;
                 case 3:
                     personaje = new RegeneracionDecorador(personaje);
-                    System.out.println("  ✅ Regeneración añadida.");
+                    System.out.println("  Regeneración añadida.");
                     break;
                 case 4:
                     continuar = false;
