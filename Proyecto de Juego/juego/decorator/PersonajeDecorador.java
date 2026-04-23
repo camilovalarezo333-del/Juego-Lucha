@@ -2,27 +2,7 @@ package juego.decorator;
 
 import juego.personaje.IPersonaje;
 
-/**
- * ============================================================
- * PATRÓN ESTRUCTURAL 1: DECORATOR
- * ============================================================
- * Clase abstracta base para todos los decoradores de personaje.
- *
- * El patrón Decorator permite añadir responsabilidades adicionales
- * a un objeto de forma dinámica, sin modificar su clase.
- *
- * En este juego: los decoradores añaden habilidades especiales
- * a los personajes (escudo mágico, veneno, regeneración) en
- * tiempo de ejecución, componiendo comportamientos de forma flexible.
- *
- * Estructura:
- * IPersonaje (componente)
- * └── Personaje (concreto)
- * └── PersonajeDecorador (abstracto) <--- Esta clase
- * └── EscudoMagicoDecorador
- * └── VenenoDecorador
- * └── RegeneracionDecorador
- */
+
 public abstract class PersonajeDecorador implements IPersonaje {
 
     /** Referencia al componente que se está decorando. */
